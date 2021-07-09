@@ -1,4 +1,4 @@
-import { mathOperatorsIds, mathOperatorsPriorities } from "./operators";
+import { mathematicalFormulasFunc, mathOperatorsIds, mathOperatorsPriorities, scalarFunc, trigonomenticFunc } from "./operators";
 
 class RPNTransform {
 
@@ -16,6 +16,36 @@ class RPNTransform {
 
   private isOperator(operator: string): boolean {
     return !!mathOperatorsPriorities[operator];
+  }
+
+  isPostfix(expr: string): boolean {
+    let patt = new RegExp("[(]");
+
+    if (patt.test(expr)) {
+      return false;
+    }
+
+    const arr = expr.split(' ');
+
+    if (isNaN(parseFloat(arr[0])) && !mathOperatorsPriorities[arr[0]] ) {
+      return false;
+    }
+
+    
+
+    if (!isNaN(parseFloat(arr[0])) && (trigonomenticFunc[arr[1]] || mathematicalFormulasFunc[arr[1]])) {
+      return true;
+    }
+
+    if (!isNaN(parseFloat(arr[0])) && scalarFunc[arr[1]]) {
+      return false;
+    }
+
+    if (trigonomenticFunc[arr[0]] || mathematicalFormulasFunc[arr[0]]) {
+      return false;
+    }
+
+    return true;
   }
 
   toPostfix(expr: string): string {

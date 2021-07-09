@@ -13,7 +13,12 @@ const question = (): Promise<null> =>
       if (!answer || !/\S/.test(answer)) {
         console.log(`Result: не ввили данные`);
       } else {
-        console.log(`Result: ${rpnCalculation.cacl(answer)}`);
+        try {
+        const result = rpnCalculation.cacl(answer)
+        console.log(`Result: ${result}`);
+        } catch (error) {
+          console.log(`Ошибка: ${error}, попробуйте еще`); 
+        }
       }
       resolve(null);
     });

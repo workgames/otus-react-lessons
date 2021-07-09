@@ -7,7 +7,8 @@
     "test": "jest",
     "start": "webpack serve --mode development --hot",
     "build": "npx webpack --mode production",
-    "calc": "npx ts-node scripts/calc"
+    "calc": "npx ts-node scripts/calc",
+    "lint": "npx eslint --ext .js,.jsx,.ts,.tsx --fix ./"
   },
   "repository": {
     "type": "git",

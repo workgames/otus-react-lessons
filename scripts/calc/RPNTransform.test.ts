@@ -39,3 +39,30 @@ describe("Обратная польская запись - конвертор, �
         expect(() => rpnTransform.toPostfix('sin sin 30')).toThrow(Error("Ввели несколько операторов подряд"));
     });
 });
+
+describe("Обратная польская запись - проверка на принадлежность что запись польская", () => {
+    it(`((2+2) / 2) - 5`, () => {
+        expect(rpnTransform.isPostfix('((2+2) / 2) - 5')).toBe(false);
+    });
+
+    it(`2 + 4 * 3 ^ 2`, () => {
+        expect(rpnTransform.isPostfix('2 + 4 * 3 ^ 2')).toBe(false);
+    });
+
+    it(`2 4 3 2 ^ * +`, () => {
+        expect(rpnTransform.isPostfix('2 4 3 2 ^ * +')).toBe(true);
+    });
+
+    it(`2 sin 2 cos +`, () => {
+        expect(rpnTransform.isPostfix('2 sin 2 cos +')).toBe(true);
+    });
+
+    it(`sin 2`, () => {
+        expect(rpnTransform.isPostfix('sin 2')).toBe(false);
+    });
+
+    it(`fib 3`, () => {
+        expect(rpnTransform.isPostfix('fib 3')).toBe(false);
+    });
+
+});

@@ -7,7 +7,12 @@ class RPNCalculation {
 
   cacl(exp: string): number {
     let resultStack: Array<string | number> = [];
-    const expression = rpnTransform.toPostfix(exp);
+    
+    let expression = exp;
+    if (!rpnTransform.isPostfix(exp)) {
+     expression = rpnTransform.toPostfix(exp);
+    }
+
     const postfix: Array<string> = expression.split(" ");
     for (let i = 0; i < postfix.length; i++) {
       if (this.isNumeric(postfix[i])) {
@@ -37,3 +42,4 @@ class RPNCalculation {
 }
 
 export const rpnCalculation = new RPNCalculation();
+
