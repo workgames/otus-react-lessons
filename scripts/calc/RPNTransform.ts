@@ -1,25 +1,52 @@
-import { mathematicalFormulasFunc, mathOperatorsIds, mathOperatorsPriorities, scalarFunc, trigonomenticFunc } from "./operators";
+import {mathematicalFormulasFunc, mathOperatorsIds, mathOperatorsPriorities, scalarFunc, trigonomenticFunc} from './operators';
 
+/**
+ * Класс перевода infix в postfix
+ */
 class RPNTransform {
-
+  /**
+   *
+   * @param val
+   * @returns
+   */
   isValid(val: string): boolean {
     return !isNaN(parseFloat(val)) || this.isOperator(val);
   }
 
+  /**
+   *
+   * @param operator
+   * @returns
+   */
   private leftAssoc(operator: string): boolean {
-    return operator !== "^";
+    return operator !== '^';
   }
 
+  /**
+   *
+   * @param operator
+   * @returns
+   */
   private priority(operator: string): number {
     return mathOperatorsPriorities[operator] || 0;
   }
 
+  /**
+   *
+   * @param operator
+   * @returns
+   */
   private isOperator(operator: string): boolean {
     return !!mathOperatorsPriorities[operator];
   }
 
+  /**
+   *
+   * @param expr
+   * @returns
+   */
   isPostfix(expr: string): boolean {
-    let patt = new RegExp("[(]");
+    const patt = new RegExp('[(]');
 
     if (patt.test(expr)) {
       return false;
@@ -31,7 +58,6 @@ class RPNTransform {
       return false;
     }
 
-    
 
     if (!isNaN(parseFloat(arr[0])) && (trigonomenticFunc[arr[1]] || mathematicalFormulasFunc[arr[1]])) {
       return true;
@@ -48,64 +74,67 @@ class RPNTransform {
     return true;
   }
 
+  /**
+   *
+   * @param expr
+   * @returns
+   */
   toPostfix(expr: string): string {
     let i = 0;
 
     const nextToken = (): string => {
-      while (i < expr.length && expr[i] == " ") {
-          i++;
+      while (i < expr.length && expr[i] == ' ') {
+        i++;
       }
 
       if (i == expr.length) {
-          return "";
+        return '';
       }
 
-      let b = "";
-      
+      let b = '';
+
       while (
         i < expr.length &&
-        expr[i] != " " &&
-        expr[i] != "(" &&
-        expr[i] != ")" &&
+        expr[i] != ' ' &&
+        expr[i] != '(' &&
+        expr[i] != ')' &&
         !this.isOperator(expr[i])
       ) {
         b += expr[i++];
       }
 
-      if (b != "") {
+      if (b != '') {
         return b;
       }
 
       return expr[i++];
     };
 
-    let S: Array<string> = [];
-    let O: Array<string | undefined> = [];
+    const S: Array<string> = [];
+    const O: Array<string | undefined> = [];
     let tok: string;
     let prevTok: string = '';
 
-    while ((tok = nextToken()) != "") {
+    while ((tok = nextToken()) != '') {
       if (this.isOperator(tok) && this.isOperator(prevTok)) {
         if (mathOperatorsIds[tok] === mathOperatorsIds[prevTok]) {
-          throw new Error("Ввели несколько операторов подряд");
+          throw new Error('Ввели несколько операторов подряд');
         }
       }
       prevTok = tok;
-      if (tok == "(") {
+      if (tok == '(') {
         S.push(tok);
-      } else if (tok == ")") {
-
-        while (S.length > 0 && S[S.length - 1] != "(") {
+      } else if (tok == ')') {
+        while (S.length > 0 && S[S.length - 1] != '(') {
           O.push(S.pop());
         }
 
         if (S.length == 0) {
-          throw new Error("Несоответствующие скобки или оператор");
+          throw new Error('Несоответствующие скобки или оператор');
         }
 
         S.pop();
       } else if (this.isOperator(tok)) {
-
         while (
           S.length > 0 &&
           this.isOperator(S[S.length - 1]) &&
@@ -113,8 +142,9 @@ class RPNTransform {
             this.priority(tok) <= this.priority(S[S.length - 1])) ||
             (!this.leftAssoc(tok) &&
               this.priority(tok) < this.priority(S[S.length - 1])))
-        )
-        O.push(S.pop());
+        ) {
+          O.push(S.pop());
+        }
         S.push(tok);
       } else {
         O.push(tok);
@@ -123,20 +153,20 @@ class RPNTransform {
 
     while (S.length > 0) {
       if (!this.isOperator(S[S.length - 1])) {
-        throw new Error("Несоответствующие скобки или оператор");
+        throw new Error('Несоответствующие скобки или оператор');
       }
       O.push(S.pop());
     }
     if (O.length == 0) {
-      throw new Error("Ошибка ввода");
+      throw new Error('Ошибка ввода');
     }
 
-    let s = "";
+    let s = '';
     for (let i = 0; i < O.length; i++) {
       if (!this.isValid(O[i] as string)) {
-        throw new Error("Несоответствующие скобки или оператор");
+        throw new Error('Несоответствующие скобки или оператор');
       }
-      if (i != 0) s += " ";
+      if (i != 0) s += ' ';
       s += O[i];
     }
     return s;

@@ -1,6 +1,5 @@
-import { createInterface } from "readline";
-import { rpnTransform } from "./RPNTransform"
-import { rpnCalculation } from "./RPNCalculation"
+import {createInterface} from 'readline';
+import {rpnCalculation} from './RPNCalculation';
 
 const rl = createInterface({
   input: process.stdin,
@@ -9,15 +8,15 @@ const rl = createInterface({
 
 const question = (): Promise<null> =>
   new Promise((resolve) => {
-    rl.question("Введите данные > ", (answer: string) => {
+    rl.question('Введите данные > ', (answer: string) => {
       if (!answer || !/\S/.test(answer)) {
         console.log(`Result: не ввили данные`);
       } else {
         try {
-        const result = rpnCalculation.cacl(answer)
-        console.log(`Result: ${result}`);
+          const result = rpnCalculation.cacl(answer);
+          console.log(`Result: ${result}`);
         } catch (error) {
-          console.log(`Ошибка: ${error}, попробуйте еще`); 
+          console.log(`Ошибка: ${error}, попробуйте еще`);
         }
       }
       resolve(null);

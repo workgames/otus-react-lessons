@@ -20,5 +20,21 @@
         "@typescript-eslint"
     ],
     "rules": {
-    }
+        "require-jsdoc" : 0,
+        "valid-jsdoc": 0,
+        "max-len": ["error", { "code": 180 }],
+        "@typescript-eslint/no-unused-vars": ["error"]
+    },
+    "overrides": [
+        {
+          "files": [
+            "webpack.config.js"
+          ],
+          "rules": {
+            "@typescript-eslint/no-var-requires": [
+              "off"
+            ]
+          }
+        }
+    ]
 }

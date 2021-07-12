@@ -1,6 +1,6 @@
-export type TTrigonomenticOperator = "sin" | "cos" | "tg" | "ctg";
-export type TMathematicalFormulasOperator = "fac" | "fib";
-export type TScalarOperator = "*" | "/" | "+" | "-" | "^";
+export type TTrigonomenticOperator = 'sin' | 'cos' | 'tg' | 'ctg';
+export type TMathematicalFormulasOperator = 'fac' | 'fib';
+export type TScalarOperator = '*' | '/' | '+' | '-' | '^';
 
 export type TMathOperator =
   | TScalarOperator
@@ -44,56 +44,56 @@ export const mathematicalFormulasFunc: {
   [key in TMathematicalFormulasOperator]: TFunction;
 } = {
   fac,
-  fib
+  fib,
 };
 
 export const scalarFunc: {
   [key in TScalarOperator]: TScalarFunc;
 } = {
-  "*": mult,
-  "/": div,
-  "+": plus,
-  "-": minus,
-  "^": pow,
+  '*': mult,
+  '/': div,
+  '+': plus,
+  '-': minus,
+  '^': pow,
 };
 
 export const allTypesFunc: {
-  [key in TMathOperator]: TScalarFunc | TFunction 
+  [key in TMathOperator]: TScalarFunc | TFunction
 } = {
   ...scalarFunc,
   ...mathematicalFormulasFunc,
-  ...trigonomenticFunc
-}
+  ...trigonomenticFunc,
+};
 
 export const mathOperatorsPriorities: {
   [key in TMathOperator]: number;
 } = {
-  "^": 3,
-  fac: 2,
-  fib: 2,
-  sin: 2,
-  cos: 2,
-  tg: 2,
-  ctg: 2,
-  "*": 2,
-  "/": 2,
-  "+": 1,
-  "-": 1,
+  '^': 3,
+  'fac': 2,
+  'fib': 2,
+  'sin': 2,
+  'cos': 2,
+  'tg': 2,
+  'ctg': 2,
+  '*': 2,
+  '/': 2,
+  '+': 1,
+  '-': 1,
 };
 
 
 export const mathOperatorsIds: {
   [key in TMathOperator]: number;
 } = {
-  fac: 3,
-  fib: 3,
-  sin: 2,
-  cos: 2,
-  tg: 2,
-  ctg: 2,
-  "^": 1,
-  "*": 1,
-  "/": 1,
-  "+": 1,
-  "-": 1,
+  'fac': 3,
+  'fib': 3,
+  'sin': 2,
+  'cos': 2,
+  'tg': 2,
+  'ctg': 2,
+  '^': 1,
+  '*': 1,
+  '/': 1,
+  '+': 1,
+  '-': 1,
 };

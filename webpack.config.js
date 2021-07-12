@@ -1,10 +1,10 @@
-const path = require("path");
+const path = require('path');
 
 module.exports = {
-  entry: "./src/index.tsx",
-  devtool: "source-map",
+  entry: './src/index.tsx',
+  devtool: 'source-map',
   resolve: {
-    extensions: [".js", ".jsx", ".ts", ".tsx", ".json"]
+    extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
   },
   output: {
     filename: 'main.js',
@@ -18,10 +18,10 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['@babel/preset-env']
-          }
-        }
-      }
-    ]
-  }
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+    ],
+  },
 };
