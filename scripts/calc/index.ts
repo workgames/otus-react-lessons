@@ -1,5 +1,5 @@
-import {createInterface} from 'readline';
-import {rpnCalculation} from './RPNCalculation';
+import { createInterface } from 'readline';
+import { rpnCalculation } from './RPNCalculation';
 
 const rl = createInterface({
   input: process.stdin,

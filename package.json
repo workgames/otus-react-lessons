@@ -10,6 +10,10 @@
     "calc": "npx ts-node scripts/calc",
     "lint": "npx eslint --ext .js,.jsx,.ts,.tsx --fix ./"
   },
+  "prettier": {
+      "singleQuote": true,
+      "printWidth": 100
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/workgames/otus-react-lessons.git"
@@ -36,6 +40,7 @@
     "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-prettier": "^3.4.0",
     "eslint-plugin-react": "^7.24.0",
+    "eslint-plugin-react-hooks": "^4.2.0",
     "faker": "^5.5.3",
     "jest": "^27.0.6",
     "prettier": "2.3.2",

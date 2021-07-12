@@ -10,7 +10,7 @@ export type TMathOperator =
 export type TFunction = (value: number) => number;
 export type TScalarFunc = (a: number, b: number) => number;
 
-export const fac: TFunction = (value: number) => value ? value * fac(value - 1) : 1;
+export const fac: TFunction = (value: number) => (value ? value * fac(value - 1) : 1);
 export const fib: TFunction = (value: number) => {
   if (value < 2) {
     return value;
@@ -18,11 +18,14 @@ export const fib: TFunction = (value: number) => {
   return fib(value - 1) + fib(value - 2);
 };
 
-const convertToRadians: TFunction = (value:number) => value * (Math.PI / 180);
+const convertToRadians: TFunction = (value: number) => value * (Math.PI / 180);
 
-export const sin: TFunction = (value: number) => parseFloat(Math.sin(convertToRadians(value)).toFixed(2));
-export const cos: TFunction = (value: number) => parseFloat(Math.cos(convertToRadians(value)).toFixed(2));
-export const tg: TFunction = (value: number) => parseFloat(Math.tan(convertToRadians(value)).toFixed(2));
+export const sin: TFunction = (value: number) =>
+  parseFloat(Math.sin(convertToRadians(value)).toFixed(2));
+export const cos: TFunction = (value: number) =>
+  parseFloat(Math.cos(convertToRadians(value)).toFixed(2));
+export const tg: TFunction = (value: number) =>
+  parseFloat(Math.tan(convertToRadians(value)).toFixed(2));
 export const ctg: TFunction = (value: number) => parseFloat((cos(value) / sin(value)).toFixed(2));
 
 export const mult: TScalarFunc = (a: number, b: number) => a * b;
@@ -58,7 +61,7 @@ export const scalarFunc: {
 };
 
 export const allTypesFunc: {
-  [key in TMathOperator]: TScalarFunc | TFunction
+  [key in TMathOperator]: TScalarFunc | TFunction;
 } = {
   ...scalarFunc,
   ...mathematicalFormulasFunc,
@@ -69,28 +72,27 @@ export const mathOperatorsPriorities: {
   [key in TMathOperator]: number;
 } = {
   '^': 3,
-  'fac': 2,
-  'fib': 2,
-  'sin': 2,
-  'cos': 2,
-  'tg': 2,
-  'ctg': 2,
+  fac: 2,
+  fib: 2,
+  sin: 2,
+  cos: 2,
+  tg: 2,
+  ctg: 2,
   '*': 2,
   '/': 2,
   '+': 1,
   '-': 1,
 };
 
-
 export const mathOperatorsIds: {
   [key in TMathOperator]: number;
 } = {
-  'fac': 3,
-  'fib': 3,
-  'sin': 2,
-  'cos': 2,
-  'tg': 2,
-  'ctg': 2,
+  fac: 3,
+  fib: 3,
+  sin: 2,
+  cos: 2,
+  tg: 2,
+  ctg: 2,
   '^': 1,
   '*': 1,
   '/': 1,

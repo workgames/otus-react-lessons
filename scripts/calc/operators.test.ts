@@ -1,21 +1,9 @@
-import {
-  plus,
-  fac,
-  fib,
-  minus,
-  mult,
-  div,
-  pow,
-  sin,
-  cos,
-  tg,
-  ctg,
-} from './operators';
+import { plus, fac, fib, minus, mult, div, pow, sin, cos, tg, ctg } from './operators';
 import faker from 'faker';
 
 describe('Стандартные математические опреации', () => {
-  const a = faker.datatype.number({min: 5, max: 150});
-  const b = faker.datatype.number({min: 5, max: 350});
+  const a = faker.datatype.number({ min: 5, max: 150 });
+  const b = faker.datatype.number({ min: 5, max: 350 });
 
   const resultOfSum = a + b;
   it(`Операция сложения: ${a} + ${b} = ${resultOfSum}`, () => {

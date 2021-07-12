@@ -1,4 +1,10 @@
-import {mathematicalFormulasFunc, mathOperatorsIds, mathOperatorsPriorities, scalarFunc, trigonomenticFunc} from './operators';
+import {
+  mathematicalFormulasFunc,
+  mathOperatorsIds,
+  mathOperatorsPriorities,
+  scalarFunc,
+  trigonomenticFunc,
+} from './operators';
 
 /**
  * Класс перевода infix в postfix
@@ -54,12 +60,14 @@ class RPNTransform {
 
     const arr = expr.split(' ');
 
-    if (isNaN(parseFloat(arr[0])) && !mathOperatorsPriorities[arr[0]] ) {
+    if (isNaN(parseFloat(arr[0])) && !mathOperatorsPriorities[arr[0]]) {
       return false;
     }
 
-
-    if (!isNaN(parseFloat(arr[0])) && (trigonomenticFunc[arr[1]] || mathematicalFormulasFunc[arr[1]])) {
+    if (
+      !isNaN(parseFloat(arr[0])) &&
+      (trigonomenticFunc[arr[1]] || mathematicalFormulasFunc[arr[1]])
+    ) {
       return true;
     }
 
@@ -113,7 +121,7 @@ class RPNTransform {
     const S: Array<string> = [];
     const O: Array<string | undefined> = [];
     let tok: string;
-    let prevTok: string = '';
+    let prevTok = '';
 
     while ((tok = nextToken()) != '') {
       if (this.isOperator(tok) && this.isOperator(prevTok)) {
@@ -138,10 +146,8 @@ class RPNTransform {
         while (
           S.length > 0 &&
           this.isOperator(S[S.length - 1]) &&
-          ((this.leftAssoc(tok) &&
-            this.priority(tok) <= this.priority(S[S.length - 1])) ||
-            (!this.leftAssoc(tok) &&
-              this.priority(tok) < this.priority(S[S.length - 1])))
+          ((this.leftAssoc(tok) && this.priority(tok) <= this.priority(S[S.length - 1])) ||
+            (!this.leftAssoc(tok) && this.priority(tok) < this.priority(S[S.length - 1])))
         ) {
           O.push(S.pop());
         }

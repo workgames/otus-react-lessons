@@ -1,5 +1,5 @@
-import {allTypesFunc} from './operators';
-import {rpnTransform} from './RPNTransform';
+import { allTypesFunc } from './operators';
+import { rpnTransform } from './RPNTransform';
 
 /**
  * Класс для рачета
@@ -55,4 +55,3 @@ class RPNCalculation {
 }
 
 export const rpnCalculation = new RPNCalculation();
-
