@@ -19,9 +19,8 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx,json,html,css,md,yml,yaml}": [
-      "npm test --watchAll=false --findRelatedTests --bail"
-    ],
-    "*.md": "yaspeller"
+      "npm lint"
+    ]
   },
   "prettier": {
     "singleQuote": true,
