@@ -19,7 +19,6 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx,json,html,css,md,yml,yaml}": [
-      "npm run lint",
       "npm test --watchAll=false --findRelatedTests --bail"
     ],
     "*.md": "yaspeller"
