@@ -38,7 +38,7 @@ describe('Обратная польская запись - калькулято�
   });
 
   it(`fac(3)`, () => {
-    expect(rpnCalculation.cacl('fac(3)')).toBe(6);
+    expect(rpnCalculation.cacl('fac(3)')).toBe(1);
   });
 
   it(`fac 3`, () => {
