@@ -9,7 +9,7 @@
     "build": "npx webpack --mode production",
     "calc": "npx ts-node scripts/calc",
     "lint": "npx eslint --ext .js,.jsx,.ts,.tsx --fix ./",
-    "check": "npm run lint",
+    "check": "npm test && npm run lint",
     "prepare": "husky install"
   },
   "husky": {
@@ -19,7 +19,7 @@
   },
   "lint-staged": {
     "*.{js,ts,tsx,json,html,css,md,yml,yaml}": [
-      "npm lint"
+      "npm run check"
     ]
   },
   "prettier": {
