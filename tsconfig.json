@@ -1,0 +1,24 @@
+{
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"]
+    },
+    "target": "es5",
+    "module": "commonjs",
+    "downlevelIteration": true,
+    "noImplicitAny": false,
+    "allowJs": true,
+    "jsx": "react",
+    "sourceMap": true,
+    "strict": true,
+    "esModuleInterop": true
+  },
+  "include": [
+    "src/**/*",
+    "scripts/**/*",
+  ],
+  "exclude": [
+    "node_modules"
+  ]
+}
