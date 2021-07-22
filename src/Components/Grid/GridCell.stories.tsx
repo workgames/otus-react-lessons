@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { GridCell } from '../Components/Grid/GridCell';
+import { GridCell } from './GridCell';
 
 export default {
   title: 'UI/GridCell',

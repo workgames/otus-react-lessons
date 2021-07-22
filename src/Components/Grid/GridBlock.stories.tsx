@@ -1,7 +1,7 @@
 import React from 'react';
 import { ComponentStory, ComponentMeta } from '@storybook/react';
 
-import { GridBlock } from '../Components/Grid/GridBlock';
+import { GridBlock } from './GridBlock';
 
 export default {
   title: 'UI/GridBlock',
