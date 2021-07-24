@@ -4,7 +4,7 @@ import { ComponentStory, ComponentMeta } from '@storybook/react';
 import { App } from './App';
 
 export default {
-  title: 'Lauout/App',
+  title: 'Layout/App',
   component: App,
   argTypes: {
     backgroundColor: { control: 'color' },
@@ -13,4 +13,4 @@ export default {
 
 const Template: ComponentStory<typeof App> = (args) => <App {...args} />;
 
-export const Defult = Template.bind({});
+export const Default = Template.bind({});

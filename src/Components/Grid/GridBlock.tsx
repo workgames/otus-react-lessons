@@ -27,12 +27,12 @@ export const GridBlock = ({ rows, cols }: TGridBlockProps): JSX.Element => {
   const gridData = getDataGrid(rows, cols);
 
   const rowsArr: Array<ReactElement> = [];
-  let cellCalss = '';
+  let cellClass = '';
 
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
       const cellId = i + '_' + j;
-      cellCalss = gridData[i][j] ? 'on' : 'off';
+      cellClass = gridData[i][j] ? 'on' : 'off';
       rowsArr.push(
         <GridCell
           onSelect={selectCellHandler}
@@ -40,7 +40,7 @@ export const GridBlock = ({ rows, cols }: TGridBlockProps): JSX.Element => {
           col={j}
           cellId={cellId}
           key={cellId}
-          className={cellCalss}
+          className={cellClass}
         />
       );
     }

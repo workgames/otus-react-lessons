@@ -13,8 +13,8 @@ export default {
 
 const Template: ComponentStory<typeof GridCell> = (args) => <GridCell {...args} />;
 
-export const GridCellDefult = Template.bind({});
-GridCellDefult.args = {
+export const GridCellDefault = Template.bind({});
+GridCellDefault.args = {
   className: '',
   cellId: '1 + 1',
   row: 1,
