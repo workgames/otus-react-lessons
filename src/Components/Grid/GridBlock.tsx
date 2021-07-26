@@ -27,12 +27,11 @@ export const GridBlock = ({ rows, cols }: GridBlockProps): JSX.Element => {
   const gridData = getDataGrid(rows, cols);
 
   const rowsArr: ReactElement[] = [];
-  let cellClass = '';
 
   for (let i = 0; i < rows; i++) {
     for (let j = 0; j < cols; j++) {
       const cellId = i + '_' + j;
-      cellClass = gridData[i][j] ? 'on' : 'off';
+      const cellClass = gridData[i][j] ? 'on' : 'off';
       rowsArr.push(
         <GridCell
           onSelect={selectCellHandler}
