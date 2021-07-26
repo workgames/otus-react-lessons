@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import './style.scss';
 
-type TInfoGeneratorsProps = {
+type InfoGeneratorsProps = {
   /**
    * Заголовок
    */
@@ -16,6 +16,6 @@ type TInfoGeneratorsProps = {
 export const InfoGenerators = ({
   label = 'Generators',
   count = 0,
-}: TInfoGeneratorsProps): JSX.Element => {
+}: InfoGeneratorsProps): JSX.Element => {
   return <div className={cn('inf')}>{`${label} : ${count}`}</div>;
 };

@@ -2,7 +2,7 @@ import React from 'react';
 import cn from 'classnames';
 import './style.scss';
 
-interface IButtonProps {
+type ButtonProps = {
   /**
    * Is this the principal call to action on the page?
    */
@@ -23,7 +23,7 @@ interface IButtonProps {
    * Optional click handler
    */
   onClick?: () => void;
-}
+};
 
 export const Button = ({
   primary = false,
@@ -31,7 +31,7 @@ export const Button = ({
   backgroundColor,
   label,
   ...props
-}: IButtonProps): JSX.Element => {
+}: ButtonProps): JSX.Element => {
   return (
     <button
       type="button"

@@ -4,7 +4,7 @@ import './grid-block.style.scss';
 import { GridCell } from './GridCell';
 import { getDataGrid } from '@/helpers/gameDataPreparation';
 
-type TGridBlockProps = {
+type GridBlockProps = {
   /**
    * Кол-во строк
    */
@@ -15,7 +15,7 @@ type TGridBlockProps = {
   cols: number;
 };
 
-export const GridBlock = ({ rows, cols }: TGridBlockProps): JSX.Element => {
+export const GridBlock = ({ rows, cols }: GridBlockProps): JSX.Element => {
   const [selectCell, setSelectCell] = useState({ row: 0, col: 0 });
 
   const width = cols * 20;
@@ -26,7 +26,7 @@ export const GridBlock = ({ rows, cols }: TGridBlockProps): JSX.Element => {
 
   const gridData = getDataGrid(rows, cols);
 
-  const rowsArr: Array<ReactElement> = [];
+  const rowsArr: ReactElement[] = [];
   let cellClass = '';
 
   for (let i = 0; i < rows; i++) {
