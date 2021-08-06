@@ -1,5 +1,9 @@
 {
   "compilerOptions": {
+    "lib": [
+      "es2019",
+      "DOM"
+    ],      
     "baseUrl": "./",
     "paths": {
       "@/*": ["src/*"]
@@ -16,7 +20,7 @@
   },
   "include": [
     "src/**/*",
-    "scripts/**/*",
+    "scripts/**/*"
   ],
   "exclude": [
     "node_modules"
