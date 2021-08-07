@@ -29,6 +29,7 @@
         "require-jsdoc" : 0,
         "valid-jsdoc": 0,
         "@typescript-eslint/no-var-requires": 0,
+        "@typescript-eslint/no-explicit-any": ["error"],
         "@typescript-eslint/no-unused-vars": ["error"]
     }
 }

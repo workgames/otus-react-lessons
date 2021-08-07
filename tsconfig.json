@@ -11,7 +11,7 @@
     "target": "es5",
     "module": "commonjs",
     "downlevelIteration": true,
-    "noImplicitAny": false,
+    "noImplicitAny": true,
     "allowJs": true,
     "jsx": "react",
     "sourceMap": true,
