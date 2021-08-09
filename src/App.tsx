@@ -1,16 +1,14 @@
 import React from 'react';
 import cn from 'classnames';
-import { GridBlock } from './Components/Grid/GridBlock';
-import { InfoGenerators } from './Components/InfoGenerators';
+import { MainPageUsers } from '@/Components/Users/MainPageUsers';
+import { ErrorBoundaryClass } from '@/Components/ErrorBoundary/ErrorBoundaryClass';
 
 export const App = ({}): JSX.Element => {
-  const rows = 30;
-  const cols = 50;
-
   return (
     <div className={cn('app')}>
-      <GridBlock rows={rows} cols={cols} />
-      <InfoGenerators count={0} />
+      <ErrorBoundaryClass>
+        <MainPageUsers />
+      </ErrorBoundaryClass>
     </div>
   );
 };

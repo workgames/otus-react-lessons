@@ -18,7 +18,7 @@
             "jsx": true
         },
         "ecmaVersion": 12,
-        "sourceType": "module"
+         "sourceType": "module"
     },
     "plugins": [
         "@typescript-eslint",
@@ -26,8 +26,11 @@
         "prettier"
     ],
     "rules": {
+        "no-invalid-this": ["off"],
         "require-jsdoc" : 0,
         "valid-jsdoc": 0,
+        "max-len": ["error", { "code": 160 , "ignoreComments": true }],
+        "@typescript-eslint/ban-types": ["off"],
         "@typescript-eslint/no-var-requires": 0,
         "@typescript-eslint/no-unused-vars": ["error"]
     }
