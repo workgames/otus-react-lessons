@@ -5,7 +5,7 @@
 // Нужно заменить FIXME на правильный тип вычисленный на основе Order
 
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
-type FIXME = Order | null;
+type FIXME = Exclude<Order, 'initial' | 'inWork'> | null;
 
 type Order =
   | {
