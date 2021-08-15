@@ -29,7 +29,7 @@ export class MainPageUsers extends Component<Props, State> {
       <UserList onClickBack={this.viewUserListHandler} />
     ) : (
       <div>
-        <Button onClick={this.viewUserListHandler} label={'Загрузка списока пользователей'} />
+        <Button onClick={this.viewUserListHandler} label={'Загрузка списка пользователей'} />
       </div>
     );
   }

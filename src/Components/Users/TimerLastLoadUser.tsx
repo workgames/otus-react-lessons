@@ -4,30 +4,27 @@ type Props = {};
 
 type State = {
   timerLoadUser: number;
-  intervalId: NodeJS.Timer | null;
 };
 
 export class TimerLastLoadUser extends Component<Props, State> {
+  intervalId: NodeJS.Timer | null = null;
+
   constructor(props: Props) {
     super(props);
     this.state = {
       timerLoadUser: 0,
-      intervalId: null,
     };
   }
 
   componentDidMount(): void {
-    const intervalId: NodeJS.Timer = setInterval(
+    this.intervalId = setInterval(
       () => this.setState((prevState) => ({ timerLoadUser: prevState.timerLoadUser + 1 })),
       1000
     );
-    this.setState({
-      intervalId,
-    });
   }
 
   componentWillUnmount(): void {
-    clearInterval(this.state.intervalId as NodeJS.Timeout);
+    clearInterval(this.intervalId as NodeJS.Timeout);
   }
 
   render(): JSX.Element {

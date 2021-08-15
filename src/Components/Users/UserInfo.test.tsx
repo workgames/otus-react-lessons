@@ -32,9 +32,7 @@ describe('User List', () => {
 
   it('Click button back user list', async () => {
     const onClick = jest.fn();
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    axios.get.mockResolvedValue({ data: fakeUser });
+    (axios.get as jest.Mock).mockResolvedValue({ data: fakeUser });
     const { findByText } = render(<UserInfo onClickBack={onClick} userId={1} />);
     const buttonBack = await waitFor(() => findByText('Вернуться к списку'));
 
