@@ -18,6 +18,7 @@ describe('ErrorBoundary for Class  test', () => {
     );
 
     expect(screen.getAllByTestId('error-component').length).toBe(1);
+    expect(screen.queryAllByTestId('no-error-component').length).toBe(0);
   });
 
   it('Render children if have no error', () => {
@@ -27,6 +28,7 @@ describe('ErrorBoundary for Class  test', () => {
         <WrappedComponent />
       </ErrorBoundaryClass>
     );
+    expect(screen.queryAllByTestId('error-component').length).toBe(0);
     expect(screen.getAllByTestId('no-error-component').length).toBe(1);
   });
 });

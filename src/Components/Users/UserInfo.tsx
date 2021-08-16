@@ -43,7 +43,11 @@ export class UserInfo extends Component<Props, State> {
       return <div>Идеть загрузка загрузка пользователя</div>;
     }
 
-    return userInfo ? (
+    if (!userInfo) {
+      return <div>Нет данных</div>;
+    }
+
+    return (
       <div data-testid={'user-info'}>
         <div>
           <h1>Данные о пользователе: {userInfo.name}</h1>
@@ -57,8 +61,6 @@ export class UserInfo extends Component<Props, State> {
           <Button label={'Вернуться к списку'} onClick={onClickBack} />
         </div>
       </div>
-    ) : (
-      <div>Нет данных</div>
     );
   }
 }

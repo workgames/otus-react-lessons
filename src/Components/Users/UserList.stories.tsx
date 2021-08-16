@@ -12,4 +12,4 @@ export default {
 
 const Template: ComponentStory<typeof UserList> = (args) => <UserList {...args} />;
 
-export const DefaultUserList = Template.bind({});
+export const DefaultUserList = Template;

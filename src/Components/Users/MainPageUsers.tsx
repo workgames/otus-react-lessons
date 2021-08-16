@@ -25,9 +25,12 @@ export class MainPageUsers extends Component<Props, State> {
 
   render(): JSX.Element {
     const { isViewUserList } = this.state;
-    return isViewUserList ? (
-      <UserList onClickBack={this.viewUserListHandler} />
-    ) : (
+
+    if (isViewUserList) {
+      return <UserList onClickBack={this.viewUserListHandler} />;
+    }
+
+    return (
       <div>
         <Button onClick={this.viewUserListHandler} label={'Загрузка списка пользователей'} />
       </div>
