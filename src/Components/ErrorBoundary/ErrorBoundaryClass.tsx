@@ -20,6 +20,8 @@ export class ErrorBoundaryClass extends Component<Props, State> {
   }
 
   componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+    // You can also log the error to an error reporting service
+    // logErrorToMyService(error, info);
     console.error('Uncaught error:', error, errorInfo);
   }
 
