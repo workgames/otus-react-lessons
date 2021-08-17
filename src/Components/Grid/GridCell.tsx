@@ -28,7 +28,11 @@ type GridCellProps = {
 };
 
 export const GridCell = ({ className, cellId, row, col, onSelect }: GridCellProps): JSX.Element => {
+  const selectCell = (): void => {
+    onSelect(row, col);
+  };
+
   return (
-    <div id={cellId} className={cn('cell', className)} onClick={() => onSelect(row, col)}></div>
+    <div data-testid={'cell'} id={cellId} className={cn('cell', className)} onClick={selectCell} />
   );
 };

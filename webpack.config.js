@@ -1,9 +1,19 @@
 const path = require('path');
-const HtmlWebpackPlugin = require('html-webpack-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const isProd = process.env.NODE_ENV === 'production';
+const isDev = !isProd;
+
+const fileName = (ext) => (isDev ? `bundle.${ext}` : `bundle.[fullhash].${ext}`);
+console.log('isProd: ', isProd);
 
 module.exports = {
-  entry: './src/index.tsx',
-  devtool: 'source-map',
+  context: path.resolve(__dirname, 'src'),
+  entry: ['@babel/polyfill', './index.tsx'],
+  mode: 'development',
+  target: isDev ? 'web' : 'browserslist',
   resolve: {
     extensions: ['.js', '.jsx', '.ts', '.tsx', '.json'],
     alias: {
@@ -11,8 +21,13 @@ module.exports = {
     },
   },
   output: {
-    filename: 'bundle.js',
+    filename: fileName('js'),
     path: path.resolve(__dirname, 'dist'),
+  },
+  devtool: isDev ? 'source-map' : false,
+  devServer: {
+    port: 3000,
+    hot: isDev,
   },
   module: {
     rules: [
@@ -29,19 +44,41 @@ module.exports = {
       {
         test: /\.s[ac]ss$/i,
         use: [
-          // Creates `style` nodes from JS strings
-          'style-loader',
+          isDev ? 'style-loader' : MiniCssExtractPlugin.loader,
           // Translates CSS into CommonJS
-          'css-loader',
+          {
+            loader: 'css-loader',
+            options: {
+              modules: {
+                mode: 'local',
+                auto: true,
+                exportGlobals: true,
+                localIdentName: '[local]--[hash:base64:5]',
+              },
+            },
+          },
           // Compiles Sass to CSS
-          'sass-loader',
+          {
+            loader: 'sass-loader',
+            options: {
+              sourceMap: isDev,
+            },
+          },
         ],
       },
     ],
   },
   plugins: [
-    new HtmlWebpackPlugin({
-      template: './public/index.html',
+    new MiniCssExtractPlugin({
+      filename: fileName('css'),
+    }),
+    new CleanWebpackPlugin(),
+    new HtmlWebPackPlugin({
+      template: '../public/index.html',
+      minify: {
+        removeComments: isProd,
+        collapseWhitespace: isProd,
+      },
     }),
   ],
 };
