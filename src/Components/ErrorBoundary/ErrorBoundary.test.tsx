@@ -1,7 +1,7 @@
 import React from 'react';
 import { cleanup, render, screen } from '@testing-library/react';
 
-import { ErrorBoundaryClass } from '@/Components/ErrorBoundary/ErrorBoundaryClass';
+import { ErrorBoundary } from '@/Components/ErrorBoundary/ErrorBoundary';
 
 afterEach(cleanup);
 
@@ -12,9 +12,9 @@ describe('ErrorBoundary for Class  test', () => {
     };
 
     render(
-      <ErrorBoundaryClass>
+      <ErrorBoundary>
         <WrappedComponent />
-      </ErrorBoundaryClass>
+      </ErrorBoundary>
     );
 
     expect(screen.getAllByTestId('error-component').length).toBe(1);
@@ -24,9 +24,9 @@ describe('ErrorBoundary for Class  test', () => {
   it('Render children if have no error', () => {
     const WrappedComponent = () => <div data-testid="no-error-component">No Error</div>;
     render(
-      <ErrorBoundaryClass>
+      <ErrorBoundary>
         <WrappedComponent />
-      </ErrorBoundaryClass>
+      </ErrorBoundary>
     );
     expect(screen.queryAllByTestId('error-component').length).toBe(0);
     expect(screen.getAllByTestId('no-error-component').length).toBe(1);

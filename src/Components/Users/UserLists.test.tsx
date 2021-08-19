@@ -24,7 +24,6 @@ describe('User List', () => {
     const { getByText } = render(<UserList />);
 
     expect(getByText('Идеть загрузка списка пользователей')).toBeInTheDocument();
-    cleanup();
   });
 
   it('Загружен список пользователей', async () => {
@@ -34,7 +33,6 @@ describe('User List', () => {
     const { getByTestId } = render(<UserList />);
     const userList = await waitFor(() => getByTestId('user-list'));
     expect(userList).toBeInTheDocument();
-    cleanup();
   });
 
   it('it displays a row for each user', async () => {
@@ -44,7 +42,6 @@ describe('User List', () => {
     const { findAllByTestId } = render(<UserList />);
     const userList = await waitFor(() => findAllByTestId('user-item'));
     expect(userList).toHaveLength(2);
-    cleanup();
   });
 
   it('Список кнопок "Данные о пользователе"', async () => {
@@ -54,7 +51,6 @@ describe('User List', () => {
     const { getAllByText } = render(<UserList />);
     const userButtons = await waitFor(() => getAllByText('Данные о пользователе'));
     expect(userButtons).toHaveLength(2);
-    cleanup();
   });
 
   it('Нажатие на кнопку "Данные о пользователе" и загрузка данных о пользователе', async () => {
@@ -69,7 +65,6 @@ describe('User List', () => {
     axios.get.mockResolvedValue({ data: fakeUsers[0] });
     const userInfo = await findByTestId('user-info');
     expect(userInfo).toBeInTheDocument();
-    cleanup();
   });
 
   it('Click button back', async () => {
@@ -82,6 +77,5 @@ describe('User List', () => {
 
     fireEvent.click(buttonBack);
     expect(onClick).toHaveBeenCalled();
-    cleanup();
   });
 });

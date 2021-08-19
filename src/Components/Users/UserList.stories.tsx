@@ -10,6 +10,4 @@ export default {
   },
 } as ComponentMeta<typeof UserList>;
 
-const Template: ComponentStory<typeof UserList> = (args) => <UserList {...args} />;
-
-export const DefaultUserList = Template;
+export const DefaultUserList: ComponentStory<typeof UserList> = () => <UserList />;

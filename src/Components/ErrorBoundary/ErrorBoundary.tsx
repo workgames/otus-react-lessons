@@ -8,7 +8,7 @@ interface State {
   hasError: boolean;
 }
 
-export class ErrorBoundaryClass extends Component<Props, State> {
+export class ErrorBoundary extends Component<Props, State> {
   state: State = {
     hasError: false,
   };
@@ -19,13 +19,14 @@ export class ErrorBoundaryClass extends Component<Props, State> {
     return { hasError: true };
   }
 
-  componentDidCatch(error: Error, errorInfo: ErrorInfo): void {
+  componentDidCatch(error: Error, errorInfo: ErrorInfo) {
     // You can also log the error to an error reporting service
     // logErrorToMyService(error, info);
+    this.setState({ hasError: true });
     console.error('Uncaught error:', error, errorInfo);
   }
 
-  render(): React.ReactNode | JSX.Element {
+  render() {
     if (this.state.hasError) {
       return <h1 data-testid="error-component">Sorry.. there was an error</h1>;
     }

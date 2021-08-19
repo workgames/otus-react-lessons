@@ -15,9 +15,7 @@ const fakeUser = {
 describe('User List', () => {
   it('Загрузка пользователя процесс', () => {
     const { getByText } = render(<UserInfo userId={1} />);
-
     expect(getByText('Идеть загрузка загрузка пользователя')).toBeInTheDocument();
-    cleanup();
   });
 
   it('Загружен пользователь', async () => {
@@ -27,7 +25,6 @@ describe('User List', () => {
     const { getByTestId } = render(<UserInfo userId={1} />);
     const userinf = await waitFor(() => getByTestId('user-info'));
     expect(userinf).toBeInTheDocument();
-    cleanup();
   });
 
   it('Click button back user list', async () => {
@@ -38,6 +35,5 @@ describe('User List', () => {
 
     fireEvent.click(buttonBack);
     expect(onClick).toHaveBeenCalled();
-    cleanup();
   });
 });

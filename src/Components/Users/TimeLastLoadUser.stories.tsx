@@ -10,8 +10,6 @@ export default {
   },
 } as ComponentMeta<typeof TimerLastLoadUser>;
 
-const Template: ComponentStory<typeof TimerLastLoadUser> = (args) => (
-  <TimerLastLoadUser {...args} />
+export const TimerLastLoadUserDefault: ComponentStory<typeof TimerLastLoadUser> = () => (
+  <TimerLastLoadUser />
 );
-
-export const DefaultUserList = Template.bind({});

@@ -182,7 +182,7 @@ module.exports = {
   },
 
   // An array of regexp pattern strings that are matched against all source file paths, matched files will skip transformation
-  testPathIgnorePatterns: ['e2e'],
+  // testPathIgnorePatterns: ['e2e'],
   moduleDirectories: ['node_modules', 'src'],
 
   // An array of regexp pattern strings that are matched against all modules before the module loader will automatically return a mock for them

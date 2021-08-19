@@ -32,52 +32,44 @@ export class UserList extends Component<Props, State> {
     };
   }
 
-  async componentDidMount(): Promise<void> {
-    const userList = await this.fetchUserList(this.state.countUserList);
-    this.setState({
-      isLoading: false,
-      userList,
-    });
+  async componentDidMount() {
+    await this.fetchUserList(this.state.countUserList);
   }
 
-  async componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>): Promise<void> {
+  async componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>) {
     if (prevState.countUserList !== this.state.countUserList && this.state.countUserList <= 10) {
       this.setState({ isLoading: true });
-      const userList = await this.fetchUserList(this.state.countUserList);
-      this.setState({
-        isLoading: false,
-        userList,
-      });
+      await this.fetchUserList(this.state.countUserList);
     }
   }
 
-  fetchUserList = async (count: number): Promise<UserListModel[]> => {
+  fetchUserList = async (count: number) => {
     const data = await fetchUserList();
-    return data?.slice(0, count);
+    this.setState({
+      isLoading: false,
+      userList: data?.slice(0, count),
+    });
   };
 
-  viewUserInfoHandler = (idUser: number): void => {
+  viewUserInfoHandler = (idUser: number) => {
     this.setState({ userId: idUser });
   };
 
-  clickBackUserListHandler = (): void => {
+  clickBackUserListHandler = () => {
     this.setState({ userId: 0 });
   };
 
-  loadUserMoreHandler = (): void => {
+  loadUserMoreHandler = () => {
     this.setState((prevState: State) => ({
       countUserList: prevState.countUserList + 1,
     }));
   };
 
   shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
-    if (nextState.countUserList > 10) {
-      return false;
-    }
-    return true;
+    return !(nextState.countUserList > 10);
   }
 
-  render(): JSX.Element {
+  render() {
     const { isLoading, userList, userId } = this.state;
     const { onClickBack } = this.props;
 
@@ -85,9 +77,11 @@ export class UserList extends Component<Props, State> {
       return <div>Идеть загрузка списка пользователей</div>;
     }
 
-    return userId ? (
-      <UserInfo userId={userId} onClickBack={this.clickBackUserListHandler} />
-    ) : (
+    if (userId) {
+      return <UserInfo userId={userId} onClickBack={this.clickBackUserListHandler} />;
+    }
+
+    return (
       <div data-testid={'user-list'}>
         <h1>Список пользователей</h1>
         <TimerLastLoadUser />

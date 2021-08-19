@@ -1,16 +1,15 @@
 import React from 'react';
-import cn from 'classnames';
 import { MainPageUsers } from '@/Components/Users/MainPageUsers';
-import { ErrorBoundaryClass } from '@/Components/ErrorBoundary/ErrorBoundaryClass';
+import { ErrorBoundary } from '@/Components/ErrorBoundary/ErrorBoundary';
 
 type Props = {};
 
-export const App = ({}: Props): JSX.Element => {
+export const App = ({}: Props) => {
   return (
-    <div className={cn('app')}>
-      <ErrorBoundaryClass>
+    <div className="app">
+      <ErrorBoundary>
         <MainPageUsers />
-      </ErrorBoundaryClass>
+      </ErrorBoundary>
     </div>
   );
 };

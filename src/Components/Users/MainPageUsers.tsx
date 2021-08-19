@@ -9,21 +9,15 @@ type State = {
 };
 
 export class MainPageUsers extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
+  state = { isViewUserList: false };
 
-    this.state = {
-      isViewUserList: false,
-    };
-  }
-
-  viewUserListHandler = (): void => {
+  viewUserListHandler = () => {
     this.setState((prevState: State) => ({
       isViewUserList: !prevState.isViewUserList,
     }));
   };
 
-  render(): JSX.Element {
+  render() {
     const { isViewUserList } = this.state;
 
     if (isViewUserList) {
