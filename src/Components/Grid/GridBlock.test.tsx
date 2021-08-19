@@ -27,8 +27,9 @@ describe('Grid Block Area', () => {
   });
 
   it('Grid Area cell seed', () => {
-    props.gridData = seedGameArea(rows, cols, arrayClone(props.gridData));
-    const { container } = render(<GridBlock {...props} />);
+    const { container } = render(
+      <GridBlock {...props} gridData={seedGameArea(rows, cols, arrayClone(props.gridData))} />
+    );
     expect(container.querySelectorAll('.on').length > 0).toBeTruthy();
   });
 });

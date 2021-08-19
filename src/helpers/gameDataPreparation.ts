@@ -32,13 +32,14 @@ export const seedGameArea = (rows: number, cols: number, data: boolean[][]): boo
 };
 
 export const getCountOnCell = (data: boolean[][]): number => {
-  let count = 0;
-  data.forEach((rows) => {
-    count += rows.reduce((acc, value) => {
-      return value ? acc + 1 : acc;
-    }, 0);
-  });
-  return count;
+  return data.reduce((acc, value) => {
+    return (
+      acc +
+      value.reduce((acc, value) => {
+        return value ? acc + 1 : acc;
+      }, 0)
+    );
+  }, 0);
 };
 
 export const getSizeArea = (size: string): SizeArea => {

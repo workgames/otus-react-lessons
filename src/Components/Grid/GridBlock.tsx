@@ -3,7 +3,7 @@ import cn from 'classnames';
 import './grid-block.style.scss';
 import { GridCell } from './GridCell';
 
-type TCellSelected = {
+type CellSelected = {
   row: number;
   col: number;
 };
@@ -22,7 +22,7 @@ export type GridBlockProps = {
 
   gridData: boolean[][];
 
-  selectCell: TCellSelected;
+  selectCell: CellSelected;
 };
 
 export const GridBlock = ({

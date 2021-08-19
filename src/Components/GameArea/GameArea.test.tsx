@@ -2,12 +2,19 @@ import React from 'react';
 import { cleanup, render, screen, fireEvent } from '@testing-library/react';
 import { GameArea } from '@/Components/GameArea';
 import userEvent from '@testing-library/user-event';
+import { OptionSizeArea } from '@/Components/Grid/types.game';
 
 afterEach(cleanup);
 
-// eslint-disable-next-line react/prop-types,react/display-name
-jest.mock('react-select', () => ({ options, value, onChange }) => {
-  function handleChange(event) {
+type SelectProps = {
+  options: OptionSizeArea[];
+  value: string | number;
+  onChange: (params: OptionSizeArea) => void;
+};
+
+// eslint-disable-next-line react/display-name
+jest.mock('react-select', () => ({ options, value, onChange }: SelectProps) => {
+  function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
     onChange({
       value: event.target.value,
       label: event.target.options[event.target.selectedIndex].text,
@@ -32,7 +39,6 @@ describe('Game Area', () => {
     expect(queryByTestId('buttons')).toBeInTheDocument();
     expect(queryByTestId('select-size')).toBeInTheDocument();
     expect(getAllByTestId('cell').length > 0).toBeTruthy();
-    cleanup();
   });
 
   it('Select size Area', () => {
@@ -42,44 +48,33 @@ describe('Game Area', () => {
       target: { value: 2 },
     });
     expect(getByText('30x50')).toBeInTheDocument();
-    cleanup();
   });
 
   it('Button start game click', async () => {
     const { getByTestId, container } = render(<GameArea />);
     const btn = getByTestId('btn-start');
-
     userEvent.click(btn);
-
-    const cells = await container.querySelectorAll('.on');
+    const cells = container.querySelectorAll('.on');
     expect(cells.length > 0).toBeTruthy();
-    cleanup();
   });
 
   it('Button clear game click', async () => {
     const { container, getByTestId } = render(<GameArea />);
     const btn = getByTestId('btn-clear');
-
     userEvent.click(btn);
-
-    const cells = await container.querySelectorAll('.on');
+    const cells = container.querySelectorAll('.on');
     expect(cells.length === 0).toBeTruthy();
-    cleanup();
   });
 
   it('Button seed game click', async () => {
     const { container, getByTestId } = render(<GameArea />);
     const btn = getByTestId('btn-clear');
     userEvent.click(btn);
-    const cells = await container.querySelectorAll('.on');
+    const cells = container.querySelectorAll('.on');
     expect(cells.length === 0).toBeTruthy();
-
     const btnSeed = getByTestId('btn-seed');
     userEvent.click(btnSeed);
-
-    const cellsSeed = await container.querySelectorAll('.on');
+    const cellsSeed = container.querySelectorAll('.on');
     expect(cellsSeed.length > 0).toBeTruthy();
-
-    cleanup();
   });
 });

@@ -55,15 +55,19 @@ describe('Grid Generator', () => {
 });
 
 describe('Game Area data', () => {
-  it('return size area from label', () => {
-    const size = getSizeArea('20x30');
-    expect(size).toStrictEqual({ rows: 20, cols: 30 });
+  describe('Size area', () => {
+    it('return size area from label', () => {
+      const size = getSizeArea('20x30');
+      expect(size).toStrictEqual({ rows: 20, cols: 30 });
+    });
   });
 
-  it('return array clone data area ', () => {
-    const area = getDataGrid(3, 3);
-    const areaClone = arrayClone(area);
+  describe('Clone data area', () => {
+    it('return array clone data area ', () => {
+      const area = getDataGrid(3, 3);
+      const areaClone = arrayClone(area);
 
-    expect(areaClone).toStrictEqual(area);
+      expect(areaClone).toStrictEqual(area);
+    });
   });
 });

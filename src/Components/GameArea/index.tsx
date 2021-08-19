@@ -13,6 +13,8 @@ const optionsSizeArea: OptionSizeArea[] = [
   { value: 3, label: '40x60' },
 ];
 
+let intervalPaydId: NodeJS.Timeout;
+
 export const GameArea = () => {
   const [sizeArea, setSizeArea] = useState<SizeArea>({ rows: 20, cols: 30 });
   const [selectedOptionSizeArea, setSelectedOptionSizeArea] = useState<OptionSizeArea>(
@@ -20,35 +22,30 @@ export const GameArea = () => {
   );
   const [generation, setGeneration] = useState<number>(0);
   const [startGame, setStartGame] = useState<boolean>(false);
-  const [intervalPaydId, setIntervalPaydId] = useState<NodeJS.Timer>();
   const [speedGame, setSpeedGame] = useState<number>(1000);
   const [selectCell, setSelectCell] = useState({ row: 0, col: 0 });
   const [gridData, setGridData] = useState<boolean[][]>(getDataGrid(sizeArea.rows, sizeArea.cols));
 
-  const selectCellHandler = (row: number, col: number): void => {
+  const selectCellHandler = (row: number, col: number) => {
     const gridCopy = arrayClone(gridData);
     gridCopy[row][col] = !gridCopy[row][col];
     setSelectCell({ row, col });
     setGridData(gridCopy);
   };
 
-  /**
-   * Случайное заполнение игрового поля
-   */
   const seedInit = (data?: boolean[][]) => {
     const gridCopy = seedGameArea(sizeArea.rows, sizeArea.cols, data || arrayClone(gridData));
     setGridData(gridCopy);
   };
 
-  const seedButtonHandler = (): void => {
-    clearInterval(intervalPaydId as NodeJS.Timeout);
+  const seedButtonHandler = () => {
+    clearInterval(intervalPaydId);
     setStartGame(false);
     seedInit(getDataGrid(sizeArea.rows, sizeArea.cols));
   };
 
   useEffect(() => {
     seedInit();
-    return clearInterval(intervalPaydId as NodeJS.Timeout);
   }, []);
 
   useEffect(() => {
@@ -80,9 +77,9 @@ export const GameArea = () => {
     setGridData(gameData2);
   };
 
-  const handlerStartGame = (): void => {
-    clearInterval(intervalPaydId as NodeJS.Timeout);
-    setIntervalPaydId(setInterval(payGame, speedGame));
+  const handlerStartGame = () => {
+    clearInterval(intervalPaydId);
+    intervalPaydId = setInterval(payGame, speedGame);
   };
 
   const handlerClearButton = () => {
@@ -92,19 +89,21 @@ export const GameArea = () => {
     setGeneration(0);
   };
 
-  const handlerStopButton = (): void => {
+  const handlerStopButton = () => {
     setStartGame(false);
-    clearInterval(intervalPaydId as NodeJS.Timeout);
+    clearInterval(intervalPaydId);
   };
 
-  const handleChangeSizeArea = (selectedOption: OptionSizeArea): void => {
-    clearInterval(intervalPaydId as NodeJS.Timeout);
-    const size = getSizeArea(selectedOption.label);
-    setSizeArea({ rows: size.rows, cols: size.cols });
-    setSelectedOptionSizeArea(selectedOption);
-    setGridData(getDataGrid(size.rows, size.cols));
-    setStartGame(false);
-    setGeneration(0);
+  const handleChangeSizeArea = (selectedOption: OptionSizeArea | null) => {
+    if (selectedOption) {
+      clearInterval(intervalPaydId as NodeJS.Timeout);
+      const size = getSizeArea(selectedOption.label);
+      setSizeArea({ rows: size.rows, cols: size.cols });
+      setSelectedOptionSizeArea(selectedOption);
+      setGridData(getDataGrid(size.rows, size.cols));
+      setStartGame(false);
+      setGeneration(0);
+    }
   };
 
   return (
