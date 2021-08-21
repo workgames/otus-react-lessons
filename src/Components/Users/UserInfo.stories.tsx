@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentStory, ComponentMeta } from '@storybook/react';
+import { ComponentMeta } from '@storybook/react';
 import { UserInfo } from '@/Components/Users/UserInfo';
 
 export default {
@@ -10,7 +10,7 @@ export default {
   },
 } as ComponentMeta<typeof UserInfo>;
 
-export const DefaultUserInfo: ComponentStory<typeof UserInfo> = (args) => <UserInfo {...args} />;
+export const DefaultUserInfo = () => <UserInfo userId={1} />;
 
 DefaultUserInfo.args = {
   userId: 1,

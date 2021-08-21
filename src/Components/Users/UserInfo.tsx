@@ -21,12 +21,9 @@ type State = {
 };
 
 export class UserInfo extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = { isLoading: true, userInfo: null };
-  }
+  state: State = { isLoading: true, userInfo: null };
 
-  async componentDidMount(): Promise<void> {
+  async componentDidMount() {
     const { userId } = this.props;
     const response = await fetchUserInfo(userId);
     this.setState({

@@ -22,21 +22,18 @@ type State = {
 };
 
 export class UserList extends Component<Props, State> {
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      isLoading: true,
-      userList: null,
-      userId: 0,
-      countUserList: 2,
-    };
-  }
+  state: State = {
+    isLoading: true,
+    userList: null,
+    userId: 0,
+    countUserList: 2,
+  };
 
   async componentDidMount() {
     await this.fetchUserList(this.state.countUserList);
   }
 
-  async componentDidUpdate(prevProps: Readonly<Props>, prevState: Readonly<State>) {
+  async componentDidUpdate(prevProps, prevState) {
     if (prevState.countUserList !== this.state.countUserList && this.state.countUserList <= 10) {
       this.setState({ isLoading: true });
       await this.fetchUserList(this.state.countUserList);
@@ -65,7 +62,7 @@ export class UserList extends Component<Props, State> {
     }));
   };
 
-  shouldComponentUpdate(nextProps: Readonly<Props>, nextState: Readonly<State>): boolean {
+  shouldComponentUpdate(nextProps, nextState) {
     return !(nextState.countUserList > 10);
   }
 

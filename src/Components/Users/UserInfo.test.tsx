@@ -19,9 +19,7 @@ describe('User List', () => {
   });
 
   it('Загружен пользователь', async () => {
-    // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-    // @ts-ignore
-    axios.get.mockResolvedValue({ data: fakeUser });
+    (axios.get as jest.Mock).mockResolvedValue({ data: fakeUser });
     const { getByTestId } = render(<UserInfo userId={1} />);
     const userinf = await waitFor(() => getByTestId('user-info'));
     expect(userinf).toBeInTheDocument();

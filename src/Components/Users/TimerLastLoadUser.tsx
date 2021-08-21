@@ -8,15 +8,11 @@ type State = {
 
 export class TimerLastLoadUser extends Component<Props, State> {
   intervalId: NodeJS.Timer | null = null;
+  state = {
+    timerLoadUser: 0,
+  };
 
-  constructor(props: Props) {
-    super(props);
-    this.state = {
-      timerLoadUser: 0,
-    };
-  }
-
-  componentDidMount(): void {
+  componentDidMount() {
     this.intervalId = setInterval(
       () => this.setState((prevState) => ({ timerLoadUser: prevState.timerLoadUser + 1 })),
       1000
