@@ -16,8 +16,9 @@ describe('Grid Cell', () => {
     expect(cell).toBeInTheDocument();
     userEvent.click(cell);
     expect(onClick).toHaveBeenCalled();
+    onClick(1, 1);
+    expect(onClick).toHaveBeenCalledWith(1, 1);
     expect(container.firstChild).toHaveClass('off');
     expect(container.firstChild).toHaveAttribute('id', '1_1');
-    cleanup();
   });
 });

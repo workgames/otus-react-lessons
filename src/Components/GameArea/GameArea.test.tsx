@@ -55,7 +55,7 @@ describe('Game Area', () => {
     const btn = getByTestId('btn-start');
     userEvent.click(btn);
     const cells = container.querySelectorAll('.on');
-    expect(cells.length > 0).toBeTruthy();
+    expect(cells.length).toBeGreaterThan(5);
   });
 
   it('Button clear game click', async () => {
@@ -63,7 +63,7 @@ describe('Game Area', () => {
     const btn = getByTestId('btn-clear');
     userEvent.click(btn);
     const cells = container.querySelectorAll('.on');
-    expect(cells.length === 0).toBeTruthy();
+    expect(cells.length).toBe(0);
   });
 
   it('Button seed game click', async () => {

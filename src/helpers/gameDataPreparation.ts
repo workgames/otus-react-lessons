@@ -17,7 +17,7 @@ export const getDataGrid = (rows: number, cols: number): boolean[][] => {
 };
 
 export const arrayClone = <T>(array: Array<T>): Array<T> => {
-  return JSON.parse(JSON.stringify(array));
+  return Object.assign([], array);
 };
 
 export const seedGameArea = (rows: number, cols: number, data: boolean[][]): boolean[][] => {
