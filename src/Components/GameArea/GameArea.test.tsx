@@ -8,7 +8,7 @@ afterEach(cleanup);
 
 type SelectProps = {
   options: OptionSizeArea[];
-  value: string | number;
+  value: number;
   onChange: (params: OptionSizeArea) => void;
 };
 

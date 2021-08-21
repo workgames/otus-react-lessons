@@ -1,5 +1,5 @@
 export type OptionSizeArea = {
-  value: number;
+  value: number | string;
   label: string;
 };
 
