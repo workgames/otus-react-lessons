@@ -18,16 +18,23 @@
             "jsx": true
         },
         "ecmaVersion": 12,
-        "sourceType": "module"
+         "sourceType": "module"
     },
     "plugins": [
         "@typescript-eslint",
         "react",
-        "prettier"
+        "prettier",
+        "@babel"
     ],
     "rules": {
+        "@typescript-eslint/explicit-function-return-type": "off",
+        "@typescript-eslint/explicit-module-boundary-types": "off",
+        "no-invalid-this": ["off"],
+        "@babel/no-invalid-this": "error",
         "require-jsdoc" : 0,
         "valid-jsdoc": 0,
+        "max-len": ["error", { "code": 160 , "ignoreComments": true }],
+        "@typescript-eslint/ban-types": ["off"],
         "@typescript-eslint/no-var-requires": 0,
         "@typescript-eslint/no-explicit-any": ["error"],
         "@typescript-eslint/no-unused-vars": ["error"]
