@@ -12,26 +12,28 @@ type SelectProps = {
   onChange: (params: OptionSizeArea) => void;
 };
 
-// eslint-disable-next-line react/display-name
-jest.mock('react-select', () => ({ options, value, onChange }: SelectProps) => {
-  function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
-    onChange({
-      value: event.target.value,
-      label: event.target.options[event.target.selectedIndex].text,
-    });
-  }
+jest.mock(
+  'react-select',
+  () =>
+    function ReactSelect({ options, value, onChange }: SelectProps) {
+      function handleChange(event: React.ChangeEvent<HTMLSelectElement>) {
+        onChange({
+          value: event.target.value,
+          label: event.target.options[event.target.selectedIndex].text,
+        });
+      }
 
-  return (
-    <select data-testid="select" value={value} onChange={handleChange}>
-      {/* eslint-disable-next-line react/prop-types */}
-      {options?.map(({ label, value }) => (
-        <option key={value} value={value}>
-          {label}
-        </option>
-      ))}
-    </select>
-  );
-});
+      return (
+        <select data-testid="select" value={value} onChange={handleChange}>
+          {options?.map(({ label, value }) => (
+            <option key={value} value={value}>
+              {label}
+            </option>
+          ))}
+        </select>
+      );
+    }
+);
 
 describe('Game Area', () => {
   it('Assigned elements', () => {
@@ -71,7 +73,7 @@ describe('Game Area', () => {
     const btn = getByTestId('btn-clear');
     userEvent.click(btn);
     const cells = container.querySelectorAll('.on');
-    expect(cells.length === 0).toBeTruthy();
+    expect(cells.length).toBe(0);
     const btnSeed = getByTestId('btn-seed');
     userEvent.click(btnSeed);
     const cellsSeed = container.querySelectorAll('.on');
