@@ -46,6 +46,7 @@ export const GameArea = () => {
 
   useEffect(() => {
     seedInit();
+    return () => clearInterval(intervalPaydId);
   }, []);
 
   useEffect(() => {
