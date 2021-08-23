@@ -1,10 +1,14 @@
-import React, { ReactElement, useState } from 'react';
+import React, { ReactElement } from 'react';
 import cn from 'classnames';
 import './grid-block.style.scss';
 import { GridCell } from './GridCell';
-import { getDataGrid } from '@/helpers/gameDataPreparation';
 
-type GridBlockProps = {
+type CellSelected = {
+  row: number;
+  col: number;
+};
+
+export type GridBlockProps = {
   /**
    * Кол-во строк
    */
@@ -13,19 +17,22 @@ type GridBlockProps = {
    * Кол-во колонок
    */
   cols: number;
+
+  onSelectCell: (row: number, col: number) => void;
+
+  gridData: boolean[][];
+
+  selectCell: CellSelected;
 };
 
-export const GridBlock = ({ rows, cols }: GridBlockProps): JSX.Element => {
-  const [selectCell, setSelectCell] = useState({ row: 0, col: 0 });
-
+export const GridBlock = ({
+  rows,
+  cols,
+  onSelectCell,
+  gridData,
+  selectCell,
+}: GridBlockProps): JSX.Element => {
   const width = cols * 20;
-
-  const selectCellHandler = (row: number, col: number): void => {
-    setSelectCell({ row, col });
-  };
-
-  const gridData = getDataGrid(rows, cols);
-
   const rowsArr: ReactElement[] = [];
 
   for (let i = 0; i < rows; i++) {
@@ -34,7 +41,7 @@ export const GridBlock = ({ rows, cols }: GridBlockProps): JSX.Element => {
       const cellClass = gridData[i][j] ? 'on' : 'off';
       rowsArr.push(
         <GridCell
-          onSelect={selectCellHandler}
+          onSelect={() => onSelectCell(i, j)}
           row={i}
           col={j}
           cellId={cellId}
@@ -50,7 +57,9 @@ export const GridBlock = ({ rows, cols }: GridBlockProps): JSX.Element => {
       <div className={cn('gridBlock')} style={{ width: width }}>
         {rowsArr}
       </div>
-      <div>Выбрана ячейка: {`row: ${selectCell.row + 1}, col: ${selectCell.col + 1}`}</div>
+      <div style={{ marginTop: '10px' }}>
+        Последняя выбранная ячейка: {`row: ${selectCell.row + 1}, col: ${selectCell.col + 1}`}
+      </div>
     </div>
   );
 };
