@@ -9,7 +9,7 @@ describe('Grid Cell', () => {
   it('Вывод ячейки и нажатие на нее, а также проверка клсаа', () => {
     const onClick = jest.fn();
     const { container, getByTestId } = render(
-      <GridCell cellId={'1_1'} onSelect={onClick} className={'off'} col={1} row={1} />
+      <GridCell cellId="1_1" onSelect={onClick} className="off" col={1} row={1} />
     );
     const cell = getByTestId('cell');
 

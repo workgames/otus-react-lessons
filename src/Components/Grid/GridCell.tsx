@@ -33,6 +33,6 @@ export const GridCell = ({ className, cellId, row, col, onSelect }: GridCellProp
   };
 
   return (
-    <div data-testid={'cell'} id={cellId} className={cn('cell', className)} onClick={selectCell} />
+    <div data-testid="cell" id={cellId} className={cn('cell', className)} onClick={selectCell} />
   );
 };

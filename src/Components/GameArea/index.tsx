@@ -108,38 +108,28 @@ export const GameArea = () => {
 
   return (
     <div>
-      <div data-testid={'buttons'} className={'buttonsGame'}>
+      <div data-testid="buttons" className="buttonsGame">
         <Button
-          data-testid={'btn-start'}
+          data-testid="btn-start"
           onClick={() => setStartGame(true)}
-          label={'Pay'}
-          size={'large'}
+          label="Pay"
+          size="large"
         />
-        <Button onClick={handlerStopButton} label={'Pause'} size={'large'} />
-        <Button
-          data-testid={'btn-clear'}
-          onClick={handlerClearButton}
-          label={'Clear'}
-          size={'large'}
-        />
+        <Button onClick={handlerStopButton} label="Pause" size="large" />
+        <Button data-testid="btn-clear" onClick={handlerClearButton} label="Clear" size="large" />
         <Button
           onClick={() => setSpeedGame((prevState) => prevState + 100)}
-          label={'Slow'}
-          size={'large'}
+          label="Slow"
+          size="large"
         />
         <Button
           onClick={() => setSpeedGame((prevState) => prevState - 100)}
-          label={'Fast'}
-          size={'large'}
+          label="Fast"
+          size="large"
         />
-        <Button
-          data-testid={'btn-seed'}
-          onClick={seedButtonHandler}
-          label={'Seed'}
-          size={'large'}
-        />
+        <Button data-testid="btn-seed" onClick={seedButtonHandler} label="Seed" size="large" />
       </div>
-      <div data-testid={'select-size'}>
+      <div data-testid="select-size">
         <Select
           value={selectedOptionSizeArea}
           onChange={handleChangeSizeArea}

@@ -7,7 +7,7 @@ export class App extends React.Component {
   render() {
     return (
       <div className={css.app}>
-        <TitleBlockText label={'The Game of Life'} size={24} />
+        <TitleBlockText label="The Game of Life" size={24} />
         <GameArea />
       </div>
     );
